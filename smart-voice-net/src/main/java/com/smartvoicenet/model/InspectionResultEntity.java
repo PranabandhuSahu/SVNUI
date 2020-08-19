@@ -23,10 +23,10 @@ import com.smartvoicenet.configuration.SVNCustomGenerator;
 @Entity
 public class InspectionResultEntity {
 	@Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "book_seq")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "inspect_seq")
     @GenericGenerator(
-        name = "book_seq", 
-        strategy = "org.thoughts.on.java.generators.StringPrefixedSequenceIdGenerator", 
+        name = "inspect_seq", 
+        strategy = "com.smartvoicenet.configuration.SVNCustomGenerator", 
         parameters = {
             @Parameter(name = SVNCustomGenerator.INCREMENT_PARAM, value = "50"),
             @Parameter(name = SVNCustomGenerator.VALUE_PREFIX_PARAMETER, value = "SVN_"),

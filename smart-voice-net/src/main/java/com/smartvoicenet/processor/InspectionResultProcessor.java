@@ -2,7 +2,6 @@ package com.smartvoicenet.processor;
 
 import java.util.Optional;
 
-import com.smartvoicenet.model.ExplainResult;
 import com.smartvoicenet.model.InspectionResultEntity;
 import com.smartvoicenet.model.InspectionResultModel;
 
@@ -59,10 +58,9 @@ public class InspectionResultProcessor {
 		InspectionResultModel model = new InspectionResultModel();
 		if (entity != null) {
 			ExplainResultProcessor explainResultProcessor = new ExplainResultProcessor();
-			ExplainResult result = explainResultProcessor.processExplainResultDetails(entity);
-			
-			model.setPhrase(Optional.ofNullable(result).orElse(null));
-			
+			model.setPhrase(
+					Optional.ofNullable(explainResultProcessor.processExplainResultDetails(entity)).orElse(null));
+
 			model.setInspectionId(Optional.ofNullable(entity.getInspectionId()).orElse(null));
 			model.setAuthScore(Optional.ofNullable(entity.getAuthScore()).orElse(null));
 			model.setCallEndTime(Optional.ofNullable(entity.getCallEndTime()).orElse(null));

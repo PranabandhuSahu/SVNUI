@@ -24,6 +24,7 @@ public class InspectionResultModel {
 	private String callEndTime;
 	private String protectionActionTime;
 	private String inspectionResultUpdate;
+	
 	public String getInspectionId() {
 		return inspectionId;
 	}
