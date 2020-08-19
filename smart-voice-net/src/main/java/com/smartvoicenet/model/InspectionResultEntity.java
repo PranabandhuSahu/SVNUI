@@ -3,49 +3,108 @@ package com.smartvoicenet.model;
 import java.util.HashMap;
 import java.util.List;
 
-//@Entity
-public class InspectionResultEntity {
-	// @Id
-	// @GeneratedValue(strategy = GenerationType.SEQUENCE, generator =
-	// "INSPECTION_SEQ")
-	// @SequenceGenerator(sequenceName = "inspection_id_seq", allocationSize = 1,
-	// name = "INSPECTION_SEQ")
-	private String inspectionId;
-	private String phoneNumber;
-	private String inspectionResult;
-	private String callStartTime;
-	private String durationOfCall;
-	private String callername;
-	private String callerType;
-	private String authScore;
+import javax.persistence.CascadeType;
+import javax.persistence.CollectionTable;
+import javax.persistence.Column;
+import javax.persistence.ElementCollection;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.MapKeyColumn;
+import javax.persistence.OneToMany;
 
+import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Parameter;
+
+import com.smartvoicenet.configuration.SVNCustomGenerator;
+
+@Entity
+public class InspectionResultEntity {
+	@Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "book_seq")
+    @GenericGenerator(
+        name = "book_seq", 
+        strategy = "org.thoughts.on.java.generators.StringPrefixedSequenceIdGenerator", 
+        parameters = {
+            @Parameter(name = SVNCustomGenerator.INCREMENT_PARAM, value = "50"),
+            @Parameter(name = SVNCustomGenerator.VALUE_PREFIX_PARAMETER, value = "SVN_"),
+            @Parameter(name = SVNCustomGenerator.NUMBER_FORMAT_PARAMETER, value = "%05d") })
+	private String inspectionId;
+	
+	@Column
+	private String phoneNumber;
+	@Column
+	private String inspectionResult;
+	@Column
+	private String callStartTime;
+	@Column
+	private String durationOfCall;
+	@Column
+	private String callername;
+	@Column
+	private String callerType;
+	@Column
+	private String authScore;
+	@Column
 	private Integer hotspotPhraseCount;
+	
+	@ElementCollection
+    @CollectionTable(name = "hotspot_phrase_mapping", 
+      joinColumns = {@JoinColumn(name = "hotspot_phrase_fid", referencedColumnName = "inspectionId")})
+    @MapKeyColumn(name = "hotspot_phrase")
 	private HashMap<String, Integer> hotspotPhrases;
 
-	private Integer urgencyPhraseCount;
+	@ElementCollection
+    @CollectionTable(name = "urgency_phrase_mapping", 
+      joinColumns = {@JoinColumn(name = "urgency_phrase_fid", referencedColumnName = "inspectionId")})
+    @MapKeyColumn(name = "urgency_phrase")
 	private HashMap<String, Integer> urgencyPhrases;
-
+	
+	@Column
+	private Integer urgencyPhraseCount;
+	@Column
 	private Integer grammaticalErrorCounts;
+	
+	@OneToMany(cascade=CascadeType.ALL)
+	@JoinColumn(name="gramm_err_fid", referencedColumnName="inspectionId")
 	private List<String> grammaticalErrorPhrases;
-
-	private Integer smartProbeErrorCounts;
+	
+	@OneToMany(cascade=CascadeType.ALL)
+	@JoinColumn(name="SmartProbe_Err_Fid", referencedColumnName="inspectionId")
 	private List<String> smartProbeErrorQs;
-
+	@Column
+	private Integer smartProbeErrorCounts;
+	@Column
 	private Integer repeatationCount;
-
+	@Column
 	private String language;
+	@Column
 	private String callerId;
+	@Column
 	private Integer userThreshold;
+	@Column
 	private String inspectionMode;
+	@Column
 	private String filename;
+	@Column
 	private String inspectionDate;
+	@Column
 	private String donatedTime;
+	@Column
 	private String callType;
+	@Column
 	private String convertedText;
+	@Column
 	private String protectionAction;
+	@Column
 	private String callEndTime;
+	@Column
 	private String protectionActionTime;
+	@Column
 	private String inspectionResultUpdate;
+	
 
 	public String getInspectionId() {
 		return inspectionId;

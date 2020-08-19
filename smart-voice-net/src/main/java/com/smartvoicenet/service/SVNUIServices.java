@@ -2,11 +2,12 @@ package com.smartvoicenet.service;
 
 import com.smartvoicenet.model.ExplainResult;
 import com.smartvoicenet.model.InspectionResultEntity;
+import com.smartvoicenet.model.InspectionResultModel;
 
 public interface SVNUIServices {
-	public ExplainResult getExplainResult(String recordID);
+	public ExplainResult getExplainResult(String inspectionId);
 
-	public String updateInspectionResult(String recordID);
+	public InspectionResultEntity updateInspectionResult(String inspectionId);
 
-	public String saveRecord(InspectionResultEntity recordObj);
+	public InspectionResultModel saveInspectionResult(InspectionResultModel resultEntity);
 }

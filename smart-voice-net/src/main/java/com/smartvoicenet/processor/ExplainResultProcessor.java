@@ -18,7 +18,7 @@ public class ExplainResultProcessor {
 
 	private InspectionResultEntity inspectionResultEntity;
 
-	public ExplainResult getExplainResultDetails(InspectionResultEntity entity) {
+	public ExplainResult processExplainResultDetails(InspectionResultEntity entity) {
 
 		this.inspectionResultEntity = entity;
 
@@ -32,6 +32,7 @@ public class ExplainResultProcessor {
 
 		return result;
 	}
+	
 
 	private Integer getPhraseRepeatationCount(ExplainResult result) {
 		return result.getHotspotPhrases().getPhraseCount()+result.getUrgencyPhrases().getPhraseCount();
