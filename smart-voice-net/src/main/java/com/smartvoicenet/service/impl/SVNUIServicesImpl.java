@@ -12,7 +12,6 @@ import com.smartvoicenet.model.InspectionResultEntity;
 import com.smartvoicenet.model.InspectionResultModel;
 import com.smartvoicenet.processor.ExplainResultProcessor;
 import com.smartvoicenet.processor.InspectionResultProcessor;
-import com.smartvoicenet.repository.ExplainResultRepo;
 import com.smartvoicenet.repository.SVNRecordRepo;
 import com.smartvoicenet.service.SVNUIServices;
 
@@ -42,7 +41,7 @@ public class SVNUIServicesImpl implements SVNUIServices {
 	@Override
 	public InspectionResultModel saveInspectionResult(InspectionResultModel resultModel) {
 		 InspectionResultEntity entity=inspectionProcessor.processInspectionResultModelToEntity(resultModel);
-		 return inspectionProcessor.processInspectionResultEntityToModel(repository.saveInspectionResult(entity));
+		 return inspectionProcessor.processInspectionResultEntityToModel(repository.save(entity));
 	}
 
 	@Override

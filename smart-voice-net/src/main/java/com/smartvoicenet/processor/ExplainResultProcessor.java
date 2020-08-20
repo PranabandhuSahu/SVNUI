@@ -42,7 +42,7 @@ public class ExplainResultProcessor {
 	private PhraseCounter getHotspotPhraseCounter() {
 
 		PhraseCounter hotspotPhraseCounter = new PhraseCounter();
-		HashMap<String, Integer> hotspotPhraseMapFromEntity = inspectionResultEntity.getHotspotPhrases();
+		HashMap<String, Integer> hotspotPhraseMapFromEntity =(HashMap<String, Integer>) inspectionResultEntity.getHotspotPhrases();
 		List<String> hotspotPhrases = new ArrayList<String>();
 		
 		// iterating over entity map to get list of phrases
@@ -60,7 +60,7 @@ public class ExplainResultProcessor {
 	private PhraseCounter getUrgencyPhraseCounter() {
 
 		PhraseCounter urgencyPhraseCounter = new PhraseCounter();
-		HashMap<String, Integer> urgencyPhraseMapFromEntity = inspectionResultEntity.getUrgencyPhrases();
+		HashMap<String, Integer> urgencyPhraseMapFromEntity = (HashMap<String, Integer>)inspectionResultEntity.getUrgencyPhrases();
 		List<String> urgencyPhrases = new ArrayList<String>();
 		
 		// iterating over entity map to get list of phrases

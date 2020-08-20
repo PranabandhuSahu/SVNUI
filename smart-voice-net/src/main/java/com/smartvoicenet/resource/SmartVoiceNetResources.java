@@ -1,7 +1,5 @@
 package com.smartvoicenet.resource;
 
-import java.util.List;
-
 import javax.ws.rs.PathParam;
 
 import org.springframework.beans.factory.annotation.Autowired;

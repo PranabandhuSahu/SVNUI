@@ -2,9 +2,12 @@ package com.smartvoicenet.processor;
 
 import java.util.Optional;
 
+import org.springframework.stereotype.Component;
+
 import com.smartvoicenet.model.InspectionResultEntity;
 import com.smartvoicenet.model.InspectionResultModel;
 
+@Component
 public class InspectionResultProcessor {
 
 	public InspectionResultEntity processInspectionResultModelToEntity(InspectionResultModel model) {

@@ -12,5 +12,5 @@ public interface SVNRecordRepo extends CrudRepository<InspectionResultEntity, St
 
 	Optional<InspectionResultEntity> findByInspectionId(String inspectionId);
 	
-	InspectionResultEntity saveInspectionResult(InspectionResultEntity entity);
+	InspectionResultEntity save(InspectionResultEntity entity);
 }
