@@ -3,6 +3,7 @@ package com.smartvoicenet.service.impl;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -33,15 +34,21 @@ public class SVNUIServicesImpl implements SVNUIServices {
 		// InspectionResultEntity entity = processAnEntityForDemo();
 
 		// fetching data from DB
-		InspectionResultEntity resultEntity = repository.findByInspectionId(inspectionId).get();
-		return explainResultProcessor.processExplainResultDetails(resultEntity);
+		Optional<InspectionResultEntity> optionalResultEntity = repository.findByInspectionId(inspectionId);
+		return explainResultProcessor.processExplainResultDetails(optionalResultEntity.get());
 
 	}
 
 	@Override
-	public InspectionResultModel saveInspectionResult(InspectionResultModel resultModel) {
-		 InspectionResultEntity entity=inspectionProcessor.processInspectionResultModelToEntity(resultModel);
-		 return inspectionProcessor.processInspectionResultEntityToModel(repository.save(entity));
+	public List<InspectionResultModel> saveInspectionResultList(List<InspectionResultModel> modelList) {
+		List<InspectionResultModel> savedModel = new ArrayList<InspectionResultModel>();
+		modelList.forEach(model -> savedModel.add(saveInspectionResult(model)));
+		return savedModel;
+	}
+
+	private InspectionResultModel saveInspectionResult(InspectionResultModel resultModel) {
+		InspectionResultEntity entity = inspectionProcessor.processInspectionResultModelToEntity(resultModel);
+		return inspectionProcessor.processInspectionResultEntityToModel(repository.save(entity));
 	}
 
 	@Override

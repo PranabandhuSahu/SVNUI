@@ -23,7 +23,7 @@ public class ExplainResultProcessor {
 		this.inspectionResultEntity = entity;
 
 		ExplainResult result = new ExplainResult();
-		
+
 		result.setGrammaticalErrors(getGrammaticalError());
 		result.setHotspotPhrases(getHotspotPhraseCounter());
 		result.setSmartProbeErrors(getSmartProbe());
@@ -32,19 +32,23 @@ public class ExplainResultProcessor {
 
 		return result;
 	}
-	
 
 	private Integer getPhraseRepeatationCount(ExplainResult result) {
-		return result.getHotspotPhrases().getPhraseCount()+result.getUrgencyPhrases().getPhraseCount();
-		
+		return result.getHotspotPhrases().getPhraseCount() + result.getUrgencyPhrases().getPhraseCount();
+
 	}
 
 	private PhraseCounter getHotspotPhraseCounter() {
 
 		PhraseCounter hotspotPhraseCounter = new PhraseCounter();
-		HashMap<String, Integer> hotspotPhraseMapFromEntity =(HashMap<String, Integer>) inspectionResultEntity.getHotspotPhrases();
+		HashMap<String, Integer> hotspotPhraseMapFromEntity = new HashMap<String, Integer>();
+
+		//fetching Hibernate PersistentMap data and storing it in a
+		inspectionResultEntity.getHotspotPhrases().forEach((k, v) -> {
+			hotspotPhraseMapFromEntity.put(k, v);
+		});
 		List<String> hotspotPhrases = new ArrayList<String>();
-		
+
 		// iterating over entity map to get list of phrases
 		for (Map.Entry<String, Integer> entry : hotspotPhraseMapFromEntity.entrySet()) {
 			hotspotPhrases.add(entry.getKey());
@@ -60,9 +64,14 @@ public class ExplainResultProcessor {
 	private PhraseCounter getUrgencyPhraseCounter() {
 
 		PhraseCounter urgencyPhraseCounter = new PhraseCounter();
-		HashMap<String, Integer> urgencyPhraseMapFromEntity = (HashMap<String, Integer>)inspectionResultEntity.getUrgencyPhrases();
+		HashMap<String, Integer> urgencyPhraseMapFromEntity = new HashMap<String, Integer>();
+
+		//fetching Hibernate PersistentMap data and storing it in a
+		inspectionResultEntity.getHotspotPhrases().forEach((k, v) -> {
+			urgencyPhraseMapFromEntity.put(k, v);
+		});
 		List<String> urgencyPhrases = new ArrayList<String>();
-		
+
 		// iterating over entity map to get list of phrases
 		for (Map.Entry<String, Integer> entry : urgencyPhraseMapFromEntity.entrySet()) {
 			urgencyPhrases.add(entry.getKey());

@@ -16,6 +16,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.MapKeyColumn;
 import javax.persistence.OrderColumn;
+import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Parameter;
@@ -23,41 +24,43 @@ import org.hibernate.annotations.Parameter;
 import com.smartvoicenet.configuration.SVNCustomGenerator;
 
 @Entity
+@Table(name="SVNDB")
 public class InspectionResultEntity {
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "inspect_seq")
-	@GenericGenerator(name = "inspect_seq", strategy = "com.smartvoicenet.configuration.SVNCustomGenerator", parameters = {
-			@Parameter(name = SVNCustomGenerator.INCREMENT_PARAM, value = "50"),
+	@Column(name="isId")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "INSPECTION_SEQ")
+	@GenericGenerator(name = "INSPECTION_SEQ", strategy = "com.smartvoicenet.configuration.SVNCustomGenerator", parameters = {
+			@Parameter(name = SVNCustomGenerator.INCREMENT_PARAM, value = "01"),
 			@Parameter(name = SVNCustomGenerator.VALUE_PREFIX_PARAMETER, value = "SVN_"),
 			@Parameter(name = SVNCustomGenerator.NUMBER_FORMAT_PARAMETER, value = "%05d") })
 	private String inspectionId;
 
-	@Column
+	@Column(name="ph_nbr")
 	private String phoneNumber;
-	@Column
+	@Column(name="isp_rslt")
 	private String inspectionResult;
-	@Column
+	@Column(name="clstartTm")
 	private String callStartTime;
-	@Column
+	@Column(name="duration")
 	private String durationOfCall;
-	@Column
+	@Column(name="clrname")
 	private String callername;
-	@Column
+	@Column(name="clr_typ")
 	private String callerType;
 	@Column
 	private String authScore;
-	@Column
+	@Column(name="htsptphrcnt")
 	private Integer hotspotPhraseCount;
 
 	@ElementCollection
 	@CollectionTable(name = "hotspot_phrase_mapping", joinColumns = {
-			@JoinColumn(name = "hotspot_phrase_fid", referencedColumnName = "inspectionId") })
-	@MapKeyColumn(name = "hotspot_phrase")
+			@JoinColumn(name = "htpstPhrId", referencedColumnName = "isId") })
+	@MapKeyColumn(name = "htspt_phrs")
 	private Map<String, Integer> hotspotPhrases = new HashMap<String, Integer>();
 
 	@ElementCollection
 	@CollectionTable(name = "urgency_phrase_mapping", joinColumns = {
-			@JoinColumn(name = "urgency_phrase_fid", referencedColumnName = "inspectionId") })
+			@JoinColumn(name = "urg_phr_id", referencedColumnName = "isId") })
 	@MapKeyColumn(name = "urgency_phrase")
 	private Map<String, Integer> urgencyPhrases = new HashMap<String, Integer>();
 
@@ -67,17 +70,17 @@ public class InspectionResultEntity {
 	private Integer grammaticalErrorCounts;
 
 	@ElementCollection(fetch = FetchType.EAGER)
-	@CollectionTable(name = "grammatical_error_phrases")
+	@CollectionTable(name = "grmrPhrs")
 	@OrderColumn(name = "gramm_err_index")
 	@Column(name = "gramm_err_phrases")
-	@JoinColumn(name = "gramm_err_fid", referencedColumnName = "inspectionId")
+	@JoinColumn(name = "gramm_err_fid", referencedColumnName = "isId")
 	private List<String> grammaticalErrorPhrases = new ArrayList<String>();
 
 	@ElementCollection(fetch = FetchType.EAGER)
-	@CollectionTable(name = "smartProbeErrorQs")
+	@CollectionTable(name = "smrprbTbl")
 	@OrderColumn(name = "smartprobe_err_index")
 	@Column(name = "smartprobe_err_qs")
-	@JoinColumn(name = "smartprobe_err_fid", referencedColumnName = "inspectionId")
+	@JoinColumn(name = "smrtErrId", referencedColumnName = "isId")
 	private List<String> smartProbeErrorQs = new ArrayList<String>();
 	@Column
 	private Integer smartProbeErrorCounts;
