@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import com.smartvoicenet.model.ExplainResult;
 import com.smartvoicenet.model.InspectionResultEntity;
 import com.smartvoicenet.model.InspectionResultModel;
+import com.smartvoicenet.model.UpdateResultModel;
 import com.smartvoicenet.processor.ExplainResultProcessor;
 import com.smartvoicenet.processor.InspectionResultProcessor;
 import com.smartvoicenet.repository.SVNRecordRepo;
@@ -28,14 +29,15 @@ public class SVNUIServicesImpl implements SVNUIServices {
 	@Autowired
 	private InspectionResultProcessor inspectionProcessor;
 
-	@Override
-	public ExplainResult getExplainResult(String inspectionId) {
-		// This is a dummy call. To be replaced by original DB call
-		// InspectionResultEntity entity = processAnEntityForDemo();
-
+	private InspectionResultEntity getInspectionResultEntity(String inspectionId) {
 		// fetching data from DB
 		Optional<InspectionResultEntity> optionalResultEntity = repository.findByInspectionId(inspectionId);
-		return explainResultProcessor.processExplainResultDetails(optionalResultEntity.get());
+		return optionalResultEntity.get();
+	}
+
+	@Override
+	public ExplainResult getExplainResult(String inspectionId) {
+		return explainResultProcessor.processExplainResultDetails(getInspectionResultEntity(inspectionId));
 
 	}
 
@@ -52,10 +54,28 @@ public class SVNUIServicesImpl implements SVNUIServices {
 	}
 
 	@Override
-	public InspectionResultEntity updateInspectionResult(String inspectionId) {
+	public String updateResult(UpdateResultModel model) {
 		// TODO Auto-generated method stub
-		return null;
+		/*
+		 * InspectionResultEntity
+		 * entity=repository.updateInspectionResultEntity(model.getInspectionId(),
+		 * model.getInspectionResultUpdate());
+		 * 
+		 */
+		repository.updateInspectionResultEntity(model.getInspectionId(), model.getInspectionResultUpdate());
+		InspectionResultEntity updatedEntity = getInspectionResultEntity(model.getInspectionId());
+		if (!updatedEntity.getInspectionResultUpdate().equalsIgnoreCase(model.getInspectionResultUpdate())) {
+			System.err.println(updatedEntity.getInspectionResultUpdate());
+			return "Update failed";
+		} else {
+			System.err.println(updatedEntity.getInspectionResultUpdate());
+			return "Update Success";
+		}
 	}
+	/*
+	 * @Override public InspectionResultEntity updateInspectionResult(String
+	 * inspectionId) { // TODO Auto-generated method stub return null; }
+	 */
 
 	private InspectionResultEntity processAnEntityForDemo() {
 		InspectionResultEntity entity = new InspectionResultEntity();

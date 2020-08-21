@@ -67,7 +67,7 @@ public class ExplainResultProcessor {
 		HashMap<String, Integer> urgencyPhraseMapFromEntity = new HashMap<String, Integer>();
 
 		//fetching Hibernate PersistentMap data and storing it in a
-		inspectionResultEntity.getHotspotPhrases().forEach((k, v) -> {
+		inspectionResultEntity.getUrgencyPhrases().forEach((k, v) -> {
 			urgencyPhraseMapFromEntity.put(k, v);
 		});
 		List<String> urgencyPhrases = new ArrayList<String>();
