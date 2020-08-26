@@ -1,5 +1,7 @@
 package com.smartvoicenet.model;
 
+import java.time.LocalDateTime;
+
 public class InspectionResultModel {
 
 	private String inspectionId;
@@ -16,7 +18,7 @@ public class InspectionResultModel {
 	private Integer userThreshold;
 	private String inspectionMode;
 	private String filename;
-	private String inspectionDate;
+	private LocalDateTime inspectionDate;
 	private String donatedTime;
 	private String callType;
 	private String convertedText;
@@ -109,10 +111,10 @@ public class InspectionResultModel {
 	public void setFilename(String filename) {
 		this.filename = filename;
 	}
-	public String getInspectionDate() {
+	public LocalDateTime getInspectionDate() {
 		return inspectionDate;
 	}
-	public void setInspectionDate(String inspectionDate) {
+	public void setInspectionDate(LocalDateTime inspectionDate) {
 		this.inspectionDate = inspectionDate;
 	}
 	public String getDonatedTime() {

@@ -1,5 +1,6 @@
 package com.smartvoicenet.model;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -17,6 +18,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.MapKeyColumn;
 import javax.persistence.OrderColumn;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Parameter;
@@ -97,7 +100,8 @@ public class InspectionResultEntity {
 	@Column
 	private String filename;
 	@Column
-	private String inspectionDate;
+	@Temporal(TemporalType.TIMESTAMP)
+	private LocalDateTime inspectionDate;
 	@Column
 	private String donatedTime;
 	@Column
@@ -289,12 +293,12 @@ public class InspectionResultEntity {
 		this.filename = filename;
 	}
 
-	public String getInspectionDate() {
+	public LocalDateTime getInspectionDate() {
 		return inspectionDate;
 	}
 
-	public void setInspectionDate(String inspectionDate) {
-		this.inspectionDate = inspectionDate;
+	public void setInspectionDate(LocalDateTime localDateTime) {
+		this.inspectionDate = localDateTime;
 	}
 
 	public String getDonatedTime() {

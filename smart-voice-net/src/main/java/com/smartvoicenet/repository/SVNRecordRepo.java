@@ -1,5 +1,7 @@
 package com.smartvoicenet.repository;
 
+import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.Modifying;
@@ -23,4 +25,7 @@ public interface SVNRecordRepo extends CrudRepository<InspectionResultEntity, St
 	@Query("update InspectionResultEntity entity set entity.inspectionResultUpdate =:inspectionResultUpdate where entity.inspectionId =:inspectionId")
 	void updateInspectionResultEntity(@Param("inspectionId") String inspectionId,
 			@Param("inspectionResultUpdate") String inspectionResultUpdate);
+	
+	@Query("Select entity from  InspectionResultEntity entity where entity.inspectionDate IN(:inspectionDates)")
+	List<InspectionResultEntity> getResultByDate(@Param("inspectionDates") List<LocalDateTime> inspectionDates);
 }
