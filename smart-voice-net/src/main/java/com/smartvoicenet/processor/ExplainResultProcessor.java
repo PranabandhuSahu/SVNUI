@@ -43,7 +43,7 @@ public class ExplainResultProcessor {
 		PhraseCounter hotspotPhraseCounter = new PhraseCounter();
 		HashMap<String, Integer> hotspotPhraseMapFromEntity = new HashMap<String, Integer>();
 
-		//fetching Hibernate PersistentMap data and storing it in a
+		//fetching Hibernate PersistentMap data and storing it in a HashMap
 		inspectionResultEntity.getHotspotPhrases().forEach((k, v) -> {
 			hotspotPhraseMapFromEntity.put(k, v);
 		});
@@ -66,7 +66,7 @@ public class ExplainResultProcessor {
 		PhraseCounter urgencyPhraseCounter = new PhraseCounter();
 		HashMap<String, Integer> urgencyPhraseMapFromEntity = new HashMap<String, Integer>();
 
-		//fetching Hibernate PersistentMap data and storing it in a
+		//fetching Hibernate PersistentMap data and storing it in a HashMap
 		inspectionResultEntity.getUrgencyPhrases().forEach((k, v) -> {
 			urgencyPhraseMapFromEntity.put(k, v);
 		});

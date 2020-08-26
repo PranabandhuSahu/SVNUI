@@ -2,6 +2,8 @@ package com.smartvoicenet.model;
 
 import java.time.LocalDateTime;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 public class InspectionResultModel {
 
 	private String inspectionId;
@@ -18,6 +20,8 @@ public class InspectionResultModel {
 	private Integer userThreshold;
 	private String inspectionMode;
 	private String filename;
+	
+	@JsonFormat(pattern="MM-dd-yyyy HH:mm:ss")
 	private LocalDateTime inspectionDate;
 	private String donatedTime;
 	private String callType;

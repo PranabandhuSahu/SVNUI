@@ -100,7 +100,6 @@ public class InspectionResultEntity {
 	@Column
 	private String filename;
 	@Column
-	@Temporal(TemporalType.TIMESTAMP)
 	private LocalDateTime inspectionDate;
 	@Column
 	private String donatedTime;

@@ -26,6 +26,8 @@ public interface SVNRecordRepo extends CrudRepository<InspectionResultEntity, St
 	void updateInspectionResultEntity(@Param("inspectionId") String inspectionId,
 			@Param("inspectionResultUpdate") String inspectionResultUpdate);
 	
-	@Query("Select entity from  InspectionResultEntity entity where entity.inspectionDate IN(:inspectionDates)")
-	List<InspectionResultEntity> getResultByDate(@Param("inspectionDates") List<LocalDateTime> inspectionDates);
+	//@Query("Select entity from  InspectionResultEntity entity where entity.inspectionDate IN(:inspectionDates)")
+	//List<InspectionResultEntity> getResultByDate(@Param("inspectionDates") List<LocalDateTime> inspectionDates);
+	
+	List<InspectionResultEntity> findAllByInspectionDateBetween(LocalDateTime startDate,LocalDateTime endDate);
 }
