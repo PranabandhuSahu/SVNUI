@@ -87,7 +87,7 @@ public class SVNUIServicesImpl implements SVNUIServices {
 				modelList.add(inspectionProcessor.processInspectionResultEntityToModel(entity));
 			});
 		}
-
+		
 		return modelList;
 	}
 
