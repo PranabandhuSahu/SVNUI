@@ -18,8 +18,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.MapKeyColumn;
 import javax.persistence.OrderColumn;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Parameter;
@@ -54,7 +52,10 @@ public class InspectionResultEntity {
 	private String authScore;
 	@Column(name="htsptphrcnt")
 	private Integer hotspotPhraseCount;
-
+		
+	@Column
+	private Integer totalHotspot;
+	
 	@ElementCollection
 	@CollectionTable(name = "hotspot_phrase_mapping", joinColumns = {
 			@JoinColumn(name = "htpstPhrId", referencedColumnName = "isId") })
@@ -69,6 +70,10 @@ public class InspectionResultEntity {
 
 	@Column
 	private Integer urgencyPhraseCount;
+	
+	@Column
+	private Integer totalUrgency;
+	
 	@Column
 	private Integer grammaticalErrorCounts;
 
@@ -355,5 +360,31 @@ public class InspectionResultEntity {
 	public void setInspectionResultUpdate(String inspectionResultUpdate) {
 		this.inspectionResultUpdate = inspectionResultUpdate;
 	}
+
+	public Integer getTotalHotspot() {
+		return totalHotspot;
+	}
+
+	public void setTotalHotspot(Integer totalHotspot) {
+		this.totalHotspot = totalHotspot;
+	}
+
+	public Integer getTotalUrgency() {
+		return totalUrgency;
+	}
+
+	public void setTotalUrgency(Integer totalUrgency) {
+		this.totalUrgency = totalUrgency;
+	}
+
+	public void setHotspotPhrases(Map<String, Integer> hotspotPhrases) {
+		this.hotspotPhrases = hotspotPhrases;
+	}
+
+	public void setUrgencyPhrases(Map<String, Integer> urgencyPhrases) {
+		this.urgencyPhrases = urgencyPhrases;
+	}
+	
+	
 
 }

@@ -44,6 +44,10 @@ public class InspectionResultProcessor {
 					Optional.ofNullable(model.getPhrase().getHotspotPhrases().getPhraseCount()).orElse(null));
 			entity.setHotspotPhrases(
 					Optional.ofNullable(model.getPhrase().getHotspotPhrases().getPhraseRptCount()).orElse(null));
+			entity.setTotalHotspot(
+					Optional.ofNullable(model.getPhrase().getHotspotPhrases().getTotalPhrases()).orElse(null));
+			entity.setTotalUrgency(
+					Optional.ofNullable(model.getPhrase().getUrgencyPhrases().getTotalPhrases()).orElse(null));
 			entity.setUrgencyPhraseCount(
 					Optional.ofNullable(model.getPhrase().getUrgencyPhrases().getPhraseCount()).orElse(null));
 			entity.setUrgencyPhrases(

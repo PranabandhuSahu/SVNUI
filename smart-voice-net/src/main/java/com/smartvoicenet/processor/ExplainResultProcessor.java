@@ -50,14 +50,17 @@ public class ExplainResultProcessor {
 		List<String> hotspotPhrases = new ArrayList<String>();
 
 		// iterating over entity map to get list of phrases
+		Integer hotspotCount=0;
 		for (Map.Entry<String, Integer> entry : hotspotPhraseMapFromEntity.entrySet()) {
 			hotspotPhrases.add(entry.getKey());
+			hotspotCount=Math.addExact(hotspotCount, entry.getValue());
 		}
 
 		hotspotPhraseCounter.setPhraseCount(hotspotPhrases.size());
 		hotspotPhraseCounter.setPhraseRptCount(hotspotPhraseMapFromEntity);
 		hotspotPhraseCounter.setPhrases(hotspotPhrases);
-
+		hotspotPhraseCounter.setTotalPhrases(hotspotCount);
+		
 		return hotspotPhraseCounter;
 	}
 
@@ -73,14 +76,17 @@ public class ExplainResultProcessor {
 		List<String> urgencyPhrases = new ArrayList<String>();
 
 		// iterating over entity map to get list of phrases
+		Integer urgencyCount=0;
 		for (Map.Entry<String, Integer> entry : urgencyPhraseMapFromEntity.entrySet()) {
 			urgencyPhrases.add(entry.getKey());
+			urgencyCount=Math.addExact(urgencyCount, entry.getValue());
 		}
 
 		urgencyPhraseCounter.setPhraseCount(urgencyPhrases.size());
 		urgencyPhraseCounter.setPhraseRptCount(urgencyPhraseMapFromEntity);
 		urgencyPhraseCounter.setPhrases(urgencyPhrases);
-
+		urgencyPhraseCounter.setTotalPhrases(urgencyCount);
+		
 		return urgencyPhraseCounter;
 	}
 

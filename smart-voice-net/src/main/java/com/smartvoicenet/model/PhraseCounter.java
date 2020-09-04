@@ -8,6 +8,15 @@ public class PhraseCounter {
 	private List<String> phrases;
 	private HashMap<String, Integer> phraseRptCount;
 	private Integer phraseCount;
+	private Integer totalPhrases;
+	
+	public Integer getTotalPhrases() {
+		return totalPhrases;
+	}
+
+	public void setTotalPhrases(Integer totalPhrases) {
+		this.totalPhrases = totalPhrases;
+	}
 
 	public List<String> getPhrases() {
 		return phrases;
