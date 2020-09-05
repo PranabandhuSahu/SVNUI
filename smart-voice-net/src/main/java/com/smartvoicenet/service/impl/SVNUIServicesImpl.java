@@ -91,5 +91,17 @@ public class SVNUIServicesImpl implements SVNUIServices {
 		return modelList;
 	}
 
+	@Override
+	public List<InspectionResultModel> findAll() {
+		List<InspectionResultModel> modelList = new ArrayList<InspectionResultModel>();
+		List<InspectionResultEntity> entityList = (List<InspectionResultEntity>) repository.findAll();
+		if (entityList != null) {
+			entityList.forEach(entity -> {
+				modelList.add(inspectionProcessor.processInspectionResultEntityToModel(entity));
+			});
+		}
+		return modelList;
+	}
+
 
 }

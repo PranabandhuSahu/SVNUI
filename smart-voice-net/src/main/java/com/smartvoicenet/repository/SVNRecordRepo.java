@@ -30,4 +30,5 @@ public interface SVNRecordRepo extends CrudRepository<InspectionResultEntity, St
 	//List<InspectionResultEntity> getResultByDate(@Param("inspectionDates") List<LocalDateTime> inspectionDates);
 	
 	List<InspectionResultEntity> findAllByInspectionDateBetween(LocalDateTime startDate,LocalDateTime endDate);
+	
 }

@@ -19,4 +19,6 @@ public interface SVNUIServices {
 	public String updateResult(UpdateResultModel model);
 	
 	public List<InspectionResultModel> getResultByDate(String startDate,String endDate);
+	
+	public List<InspectionResultModel> findAll(); 
 }

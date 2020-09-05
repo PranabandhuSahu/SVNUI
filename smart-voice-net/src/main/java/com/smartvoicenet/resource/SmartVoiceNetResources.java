@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -26,26 +27,29 @@ public class SmartVoiceNetResources {
 
 	@Autowired
 	private SVNUIServices service;
-
+	
+	@CrossOrigin(origins = "http://localhost:4200")
 	@GetMapping("/explain/{recordId}")
 	public ExplainResult getExplainResultDetails(@PathVariable("recordId") String recordId) {
 		return service.getExplainResult(recordId);
 	}
-
+	
+	@CrossOrigin(origins = "http://localhost:4200")
 	@PostMapping("/save")
 	public List<InspectionResultModel> saveInspectionResult(@RequestBody List<InspectionResultModel> modelList) {
 
 		return service.saveInspectionResultList(modelList);
 
 	}
-
+	
+	@CrossOrigin(origins = "http://localhost:4200")
 	@PutMapping("/update")
 	public String updateInspectionResult(@RequestBody UpdateResultModel updateModel) {
-
+		
 		return service.updateResult(updateModel);
 
 	}
-
+	
 	@PostMapping(value = "/save1", consumes = { "multipart/form-data", "application/json" })
 	public List<InspectionResultModel> save(@RequestPart("file") MultipartFile[] files,
 			@RequestPart("inspectionResultModel") List<InspectionResultModel> modelList) {
@@ -67,6 +71,11 @@ public class SmartVoiceNetResources {
 			@RequestParam("endDate") String endDate) {
 
 		return service.getResultByDate(startDate, endDate);
+	}
+	@GetMapping("/findAll")
+	public List<InspectionResultModel> getAllRecord(			) {
+
+		return service.findAll();
 	}
 	
 }
