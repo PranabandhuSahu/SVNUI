@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.smartvoicenet.model.ExplainResult;
@@ -94,7 +96,8 @@ public class SVNUIServicesImpl implements SVNUIServices {
 	@Override
 	public List<InspectionResultModel> findAll() {
 		List<InspectionResultModel> modelList = new ArrayList<InspectionResultModel>();
-		List<InspectionResultEntity> entityList = (List<InspectionResultEntity>) repository.findAll();
+		Pageable pageable = PageRequest.of(0, 10);
+		List<InspectionResultEntity> entityList = (List<InspectionResultEntity>) repository.findAll(pageable);
 		if (entityList != null) {
 			entityList.forEach(entity -> {
 				modelList.add(inspectionProcessor.processInspectionResultEntityToModel(entity));

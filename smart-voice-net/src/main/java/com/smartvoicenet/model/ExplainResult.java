@@ -28,11 +28,17 @@ public class ExplainResult {
 	}
 
 	public Integer getRepeatationIndicator() {
+		if(repeatationIndicator!=null) {
+			return repeatationIndicator;
+		}else {
+			this.repeatationIndicator = this.hotspotPhrases.getPhraseCount() + this.urgencyPhrases.getPhraseCount();
+		}
 		return repeatationIndicator;
 	}
 
 	public void setRepeatationIndicator(Integer repeatationIndicator) {
-		this.repeatationIndicator = repeatationIndicator;
+		
+		this.repeatationIndicator=repeatationIndicator;
 	}
 
 	public GrammaticalError getGrammaticalErrors() {

@@ -7,13 +7,13 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 public class InspectionResultModel {
 
 	private String inspectionId;
-	private String phoneNumber;
-	private String inspectionResult;
+	private String phone;
+	private String originalResult;//1st filed name was inspectionResult
 	private String callStartTime;
 	private String durationOfCall;
 	private String callername;
 	private String callerType;
-	private String authScore;
+	private String Score;
 	private ExplainResult phrase;
 	private String language;
 	private String callerId;
@@ -22,14 +22,16 @@ public class InspectionResultModel {
 	private String filename;
 	
 	@JsonFormat(pattern="MM-dd-yyyy HH:mm:ss")
-	private LocalDateTime inspectionDate;
+	private LocalDateTime date;
 	private String donatedTime;
 	private String callType;
-	private String convertedText;
+	private String transcript;//orginal filed is convertedText
 	private String protectionAction;
 	private String callEndTime;
 	private String protectionActionTime;
-	private String inspectionResultUpdate;
+	private String type;//earlier filed name was inspectionResultUpdate
+	private String audioSrc;//newly added filed
+	private boolean live;//added as per Spandan's requirement
 	
 	public String getInspectionId() {
 		return inspectionId;
@@ -37,17 +39,17 @@ public class InspectionResultModel {
 	public void setInspectionId(String inspectionId) {
 		this.inspectionId = inspectionId;
 	}
-	public String getPhoneNumber() {
-		return phoneNumber;
+	public String getPhone() {
+		return phone;
 	}
-	public void setPhoneNumber(String phoneNumber) {
-		this.phoneNumber = phoneNumber;
+	public void setPhoneNumber(String phone) {
+		this.phone = phone;
 	}
-	public String getInspectionResult() {
-		return inspectionResult;
+	public String getoriginalResult() {
+		return originalResult;
 	}
-	public void setInspectionResult(String inspectionResult) {
-		this.inspectionResult = inspectionResult;
+	public void setoriginalResult(String originalResult) {
+		this.originalResult = originalResult;
 	}
 	public String getCallStartTime() {
 		return callStartTime;
@@ -72,12 +74,6 @@ public class InspectionResultModel {
 	}
 	public void setCallerType(String callerType) {
 		this.callerType = callerType;
-	}
-	public String getAuthScore() {
-		return authScore;
-	}
-	public void setAuthScore(String authScore) {
-		this.authScore = authScore;
 	}
 	public ExplainResult getPhrase() {
 		return phrase;
@@ -115,11 +111,11 @@ public class InspectionResultModel {
 	public void setFilename(String filename) {
 		this.filename = filename;
 	}
-	public LocalDateTime getInspectionDate() {
-		return inspectionDate;
+	public LocalDateTime getDate() {
+		return date;
 	}
-	public void setInspectionDate(LocalDateTime inspectionDate) {
-		this.inspectionDate = inspectionDate;
+	public void setDate(LocalDateTime date) {
+		this.date = date;
 	}
 	public String getDonatedTime() {
 		return donatedTime;
@@ -132,12 +128,6 @@ public class InspectionResultModel {
 	}
 	public void setCallType(String callType) {
 		this.callType = callType;
-	}
-	public String getConvertedText() {
-		return convertedText;
-	}
-	public void setConvertedText(String convertedText) {
-		this.convertedText = convertedText;
 	}
 	public String getProtectionAction() {
 		return protectionAction;
@@ -157,11 +147,35 @@ public class InspectionResultModel {
 	public void setProtectionActionTime(String protectionActionTime) {
 		this.protectionActionTime = protectionActionTime;
 	}
-	public String getInspectionResultUpdate() {
-		return inspectionResultUpdate;
+	public String getType() {
+		return type;
 	}
-	public void setInspectionResultUpdate(String inspectionResultUpdate) {
-		this.inspectionResultUpdate = inspectionResultUpdate;
+	public void setType(String type) {
+		this.type = type;
+	}
+	public String getAudioSrc() {
+		return audioSrc;
+	}
+	public void setAudioSrc(String audioSrc) {
+		this.audioSrc = audioSrc;
+	}
+	public boolean isLive() {
+		return live;
+	}
+	public void setLive(boolean live) {
+		this.live = live;
+	}
+	public String getTranscript() {
+		return transcript;
+	}
+	public void setTranscript(String transcript) {
+		this.transcript = transcript;
+	}
+	public String getScore() {
+		return Score;
+	}
+	public void setScore(String score) {
+		Score = score;
 	}
 
 }

@@ -77,14 +77,14 @@ public class InspectionResultEntity {
 	@Column
 	private Integer grammaticalErrorCounts;
 
-	@ElementCollection(fetch = FetchType.EAGER)
+	@ElementCollection(fetch = FetchType.LAZY)
 	@CollectionTable(name = "grmrPhrs")
 	@OrderColumn(name = "gramm_err_index")
 	@Column(name = "gramm_err_phrases")
 	@JoinColumn(name = "gramm_err_fid", referencedColumnName = "isId")
 	private List<String> grammaticalErrorPhrases = new ArrayList<String>();
 
-	@ElementCollection(fetch = FetchType.EAGER)
+	@ElementCollection(fetch = FetchType.LAZY)
 	@CollectionTable(name = "smrprbTbl")
 	@OrderColumn(name = "smartprobe_err_index")
 	@Column(name = "smartprobe_err_qs")

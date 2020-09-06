@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
@@ -30,5 +31,7 @@ public interface SVNRecordRepo extends CrudRepository<InspectionResultEntity, St
 	//List<InspectionResultEntity> getResultByDate(@Param("inspectionDates") List<LocalDateTime> inspectionDates);
 	
 	List<InspectionResultEntity> findAllByInspectionDateBetween(LocalDateTime startDate,LocalDateTime endDate);
+
+	List<InspectionResultEntity> findAll(Pageable pageable);
 	
 }

@@ -31,6 +31,7 @@ public class SmartVoiceNetResources {
 	@CrossOrigin(origins = "http://localhost:4200")
 	@GetMapping("/explain/{recordId}")
 	public ExplainResult getExplainResultDetails(@PathVariable("recordId") String recordId) {
+		System.out.println("********* Explain Result ID *******"+recordId);
 		return service.getExplainResult(recordId);
 	}
 	
@@ -50,20 +51,21 @@ public class SmartVoiceNetResources {
 
 	}
 	
-	@PostMapping(value = "/save1", consumes = { "multipart/form-data", "application/json" })
-	public List<InspectionResultModel> save(@RequestPart("file") MultipartFile[] files,
-			@RequestPart("inspectionResultModel") List<InspectionResultModel> modelList) {
-
-		for (MultipartFile file : files) {
-			for (InspectionResultModel model : modelList) {
-				System.err.println(file.getOriginalFilename());
-
-				System.err.println(model.getPhoneNumber());
-			}
-
-		}
-		return new ArrayList<InspectionResultModel>();
-	}
+	/*
+	 * @PostMapping(value = "/save1", consumes = { "multipart/form-data",
+	 * "application/json" }) public List<InspectionResultModel>
+	 * save(@RequestPart("file") MultipartFile[] files,
+	 * 
+	 * @RequestPart("inspectionResultModel") List<InspectionResultModel> modelList)
+	 * {
+	 * 
+	 * for (MultipartFile file : files) { for (InspectionResultModel model :
+	 * modelList) { System.err.println(file.getOriginalFilename());
+	 * 
+	 * System.err.println(model.getPhoneNumber()); }
+	 * 
+	 * } return new ArrayList<InspectionResultModel>(); }
+	 */
 
 	@GetMapping("/byDate")
 	public List<InspectionResultModel> getInspectionResultByDate(
@@ -72,6 +74,7 @@ public class SmartVoiceNetResources {
 
 		return service.getResultByDate(startDate, endDate);
 	}
+	@CrossOrigin(origins = "http://localhost:4200")
 	@GetMapping("/findAll")
 	public List<InspectionResultModel> getAllRecord(			) {
 
