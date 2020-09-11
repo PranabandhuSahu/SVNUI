@@ -24,7 +24,7 @@ import com.smartvoicenet.service.SVNUIServices;
 public class SVNUIServicesImpl implements SVNUIServices {
 
 	@Autowired
-	private SVNRecordRepo repository;
+	private SVNRecordRepo repository; //
 
 	@Autowired
 	private ExplainResultProcessor explainResultProcessor;
