@@ -1,6 +1,5 @@
 package com.smartvoicenet.resource;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,9 +11,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.multipart.MultipartFile;
 
 import com.smartvoicenet.model.ExplainResult;
 import com.smartvoicenet.model.InspectionResultModel;
@@ -76,9 +73,9 @@ public class SmartVoiceNetResources {
 	}
 	@CrossOrigin(origins = "http://localhost:4200")
 	@GetMapping("/findAll")
-	public List<InspectionResultModel> getAllRecord(			) {
+	public List<InspectionResultModel> getAllRecord() {
 
 		return service.findAll();
 	}
-	
+	//Commit from GIT
 }
