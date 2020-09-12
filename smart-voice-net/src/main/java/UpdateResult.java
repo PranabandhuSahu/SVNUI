@@ -2,7 +2,7 @@
 public class UpdateResult {
 	
 	private String inspectionResultUpdate;
-	private String inspectionResultUpdateDate;
+	private String inspectionResultUpdateDate;//test
 	
 
 }
