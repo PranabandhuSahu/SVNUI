@@ -59,7 +59,7 @@ public class SmartVoiceNetResources {
 	 * for (MultipartFile file : files) { for (InspectionResultModel model :
 	 * modelList) { System.err.println(file.getOriginalFilename());
 	 * 
-	 * System.err.println(model.getPhoneNumber()); }
+	 * System.err.println(model.getPhoneNumber()); } ///
 	 * 
 	 * } return new ArrayList<InspectionResultModel>(); }
 	 */
